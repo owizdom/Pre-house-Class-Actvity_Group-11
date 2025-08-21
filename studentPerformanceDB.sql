@@ -2,6 +2,9 @@
 -- Student Performance Database - ALU Rwanda
 -- =========================================
 
+CREATE DATABASE IF NOT EXISTS alu_student_db;
+USE alu_student_db;
+
 -- Drop tables if they already exist (for re-runs)
 DROP TABLE IF EXISTS python_grades;
 DROP TABLE IF EXISTS linux_grades;
