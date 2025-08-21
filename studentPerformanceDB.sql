@@ -23,3 +23,22 @@ CREATE TABLE linux_grades (
     course_id INT PRIMARY KEY AUTO_INCREMENT,
     course_name VARCHAR(50) DEFAULT 'Linux',
     student_id INT,
+    grade_obtained DECIMAL(5,2),
+    FOREIGN KEY (student_id) REFERENCES students(student_id)
+);
+
+-- ==========================
+-- Create python_grades table
+-- ==========================
+CREATE TABLE python_grades (
+    course_id INT PRIMARY KEY AUTO_INCREMENT,
+    course_name VARCHAR(50) DEFAULT 'Python',
+    student_id INT,
+    grade_obtained DECIMAL(5,2),
+    FOREIGN KEY (student_id) REFERENCES students(student_id)
+);
+
+-- ==========================================
+-- Insert sample students (at least 15 total)
+-- ==========================================
+
