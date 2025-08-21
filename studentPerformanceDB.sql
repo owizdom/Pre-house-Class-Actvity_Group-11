@@ -47,7 +47,7 @@ INSERT INTO students (student_name, intake_year) VALUES
 ('Lennie Ishimwele', 2025),
 ('Nawaf Ahmad', 2025),
 ('Cyuzuzuo Germain', 2025),
-('Willy Tech', 2025),
+('Willy Nsenga', 2025),
 ('Divin Bonheur', 2025),
 ('Grace Jafar', 2025),
 ('Henry Maduabuchi', 2025),
