@@ -64,7 +64,6 @@ cd alu-student-performance-db
   mysql -u root -p < student_performance.sql
   ```
 
-```
 ## Queries Implemented
 
 The .sql file contains queries with comments for each task.
