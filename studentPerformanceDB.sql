@@ -136,3 +136,19 @@ FROM linux_grades
 UNION
 SELECT 'Python', AVG(grade_obtained)
 FROM python_grades;
+
+-- ========================================================
+-- QUERY 5: Top-performing student across both courses
+-- (based on average of their grades across available courses)
+-- ========================================================
+SELECT s.student_name,
+       AVG(g.grade_obtained) AS overall_avg
+FROM students s
+JOIN (
+    SELECT student_id, grade_obtained FROM linux_grades
+    UNION ALL
+    SELECT student_id, grade_obtained FROM python_grades
+) g ON s.student_id = g.student_id
+GROUP BY s.student_id
+ORDER BY overall_avg DESC
+LIMIT 1;
