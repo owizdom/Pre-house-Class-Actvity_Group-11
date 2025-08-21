@@ -87,6 +87,7 @@ JOIN linux_grades l ON s.student_id = l.student_id
 WHERE l.grade_obtained < 50;
 ```
 
+```
 3. Find students who took only one course
 
 Uses ``UNION`` to combine results.
