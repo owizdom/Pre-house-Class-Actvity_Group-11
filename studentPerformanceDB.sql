@@ -109,13 +109,17 @@ WHERE l.grade_obtained < 50;
 
 -- ==========================================
 -- QUERY 2: Students who took only one course
--- ================================
--- QUERY 3: Students who took both
--- ================================
+-- ==========================================
 SELECT s.student_name
 FROM students s
 WHERE s.student_id IN (SELECT student_id FROM linux_grades)
-  AND s.student_id IN (SELECT student_id FROM python_grades);
+  AND s.student_id NOT IN (SELECT student_id FROM python_grades)
+UNION
+SELECT s.student_name
+FROM students s
+WHERE s.student_id IN (SELECT student_id FROM python_grades)
+  AND s.student_id NOT IN (SELECT student_id FROM linux_grades);
+
 -- ================================
 -- QUERY 3: Students who took both
 -- ================================
@@ -124,7 +128,7 @@ FROM students s
 WHERE s.student_id IN (SELECT student_id FROM linux_grades)
   AND s.student_id IN (SELECT student_id FROM python_grades);
 
--- ==========================================
+-- ================================
 -- QUERY 4: Average grade per course
 -- ==========================================
 SELECT 'Linux' AS course, AVG(grade_obtained) AS average_grade
