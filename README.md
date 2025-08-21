@@ -51,3 +51,67 @@ python_grades(course_id, course_name, student_id, grade_obtained)
 ````
 --
 
+## Setup Instructions
+
+1️. Clone the repository
+```sql
+git clone https://github.com/<your-username>/alu-student-performance-db.git
+cd alu-student-performance-db
+```
+
+2. Load the SQL file in MySQL
+   ```sql
+  mysql -u root -p < student_performance.sql
+  `
+
+## Queries Implemented
+
+The .sql file contains queries with comments for each task.
+
+ 1. Insert sample data
+```
+Populates 15 students with a mix of those who:
+
+Took Linux only
+
+Took Python only
+
+Took both courses
+```
+
+2. Find students who scored <50% in Linux
+```
+SELECT s.student_name, l.grade_obtained
+FROM students s
+JOIN linux_grades l ON s.student_id = l.student_id
+WHERE l.grade_obtained < 50;
+```
+
+3. Find students who took only one course
+
+Uses ``UNION`` to combine results.
+
+4. Find students who took both courses
+
+Checks presence in both grade tables.
+
+Calculate average grade per course
+
+Uses ``AVG()`` to find mean performance for Linux and Python separately.
+
+6. Identify top-performing student across both courses
+```sql
+SELECT s.student_name, AVG(g.grade_obtained) AS overall_avg
+FROM students s
+JOIN (
+    SELECT student_id, grade_obtained FROM linux_grades
+    UNION ALL
+    SELECT student_id, grade_obtained FROM python_grades
+) g ON s.student_id = g.student_id
+GROUP BY s.student_id
+ORDER BY overall_avg DESC
+```
+
+
+---
+
