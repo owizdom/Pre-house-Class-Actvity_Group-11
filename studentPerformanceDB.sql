@@ -98,3 +98,24 @@ INSERT INTO python_grades (student_id, grade_obtained) VALUES
 (14, 68.00),
 (15, 55.00);
 
+-- ===========================
+-- QUERY 1: Students <50 in Linux
+-- ===========================
+-- Find students who scored less than 50% in the Linux course
+SELECT s.student_name, l.grade_obtained
+FROM students s
+JOIN linux_grades l ON s.student_id = l.student_id
+WHERE l.grade_obtained < 50;
+
+-- ==========================================
+-- QUERY 2: Students who took only one course
+-- ==========================================
+SELECT s.student_name
+FROM students s
+WHERE s.student_id IN (SELECT student_id FROM linux_grades)
+  AND s.student_id NOT IN (SELECT student_id FROM python_grades)
+UNION
+SELECT s.student_name
+FROM students s
+WHERE s.student_id IN (SELECT student_id FROM python_grades)
+  AND s.student_id NOT IN (SELECT student_id FROM linux_grades);
